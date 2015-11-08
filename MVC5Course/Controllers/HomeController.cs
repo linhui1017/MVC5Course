@@ -16,9 +16,22 @@ namespace MVC5Course.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            //Linhui 軟體測試
+            //TODO 工作清單測試
+            //HACK Worklist Testing
+            //throw new Exception("BAD");
 
             return View();
         }
+
+
+        public ActionResult Test()
+        {
+            ViewBag.Message = "軟體測試";
+
+            return View();
+        }
+  
 
         public ActionResult Contact()
         {
