@@ -16,9 +16,12 @@ namespace MVC5Course.Controllers
     {
         private FabricsEntities1 db = new FabricsEntities1();
 
+		ProductRepository repo = RepositoryHelper.GetProductRepository();
+
         // GET: Products
         public ActionResult Index()
         {
+
             //var result = db.Product.Where(x=>x.Price <= 10).
             //    OrderBy(x => x.ProductName);
 
@@ -40,10 +43,14 @@ namespace MVC5Course.Controllers
             //                ProductName = p.ProductName,
             //                Price = p.Price
             //            };
-            var data2 = from p in db.Product
-                        where p.ProductId <= 10
-                        orderby p.ProductId
-                        select p;
+
+
+			//var data2 = from p in db.Product
+			//			where p.ProductId <= 10
+			//			orderby p.ProductId
+			//			select p;
+
+			var data2 = repo.Get取得前面十筆資料();
 
             //return View(db.Product.ToList());
             return View(data2);
@@ -52,15 +59,29 @@ namespace MVC5Course.Controllers
         [HttpPost]
         public ActionResult Index(string searchStr)
         {
-            if (!string.IsNullOrEmpty(searchStr)) 
-            {
-                var result = db.Product.Where(x => x.ProductName.
-                    ToLower().
-                    Contains(searchStr.ToLower())).
-                    OrderBy(x => x.ProductId);
-                return View(result);
+
+			//if (!string.IsNullOrEmpty(searchStr)) 
+			//{
+			//	var result = db.Product.Where(x => x.ProductName.
+			//		ToLower().
+			//		Contains(searchStr.ToLower())).
+			//		OrderBy(x => x.ProductId);
+			//	return View(result);
             
-            }
+			//}
+
+			if (!string.IsNullOrEmpty(searchStr))
+			{
+
+				//var result = repo.Where(x => x.ProductName.
+				//		ToLower().
+				//		Contains(searchStr.ToLower())).
+				//		OrderBy(x => x.ProductId);
+
+				var result = repo.SearchProductName(searchStr);
+				return View(result);
+
+			}
             return View(new List<Product>());
 
         }
@@ -71,7 +92,9 @@ namespace MVC5Course.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+			
+           // Product product = db.Product.Find(id);
+			Product product = repo.GetByID(id);
            // Product product = db.Product.Where(x => x.ProductId == id).FirstOrDefault();
             //Product product = db.Product.FirstOrDefault(x => x.ProductId == id);
             if (product == null)
@@ -111,7 +134,8 @@ namespace MVC5Course.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            //Product product = db.Product.Find(id);
+			Product product = repo.GetByID(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -144,7 +168,8 @@ namespace MVC5Course.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            //Product product = db.Product.Find(id);
+			Product product = repo.GetByID(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -157,7 +182,8 @@ namespace MVC5Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Product.Find(id);
+           // Product product = db.Product.Find(id);
+			Product product = repo.GetByID(id);
             //var OrdLines = product.OrderLine;
             //foreach (var one in OrdLines) 
             //{
@@ -234,7 +260,9 @@ namespace MVC5Course.Controllers
             //Linhui 直接下SQL
             //db.Database.ExecuteSqlCommand("Update dbo.Products SET Price = 5 where ProductId <= @p0", 10);
 
-            var datas = db.Product.Where(x => x.ProductId <= 10);
+           // var datas = db.Product.Where(x => x.ProductId <= 10);
+
+			var datas = repo.Get取得前面十筆資料();
 
             foreach (var one in datas) 
             {
