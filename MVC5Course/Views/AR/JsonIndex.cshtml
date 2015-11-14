@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "JsonIndex";
+}
+
+<p>
+    <button type="button" onclick="GetData()">Click Me!</button>
+</p>
+
+<h2>JsonIndex</h2>
+
+<script>
+    function GetData()
+    {
+        $.post('/AR/JsonData', "",
+            function (data) {
+                console.log(1,data);
+            }
+        );
+    }
+
+</script>

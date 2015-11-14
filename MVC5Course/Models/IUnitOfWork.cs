@@ -2,7 +2,6 @@ using System.Data.Entity;
 
 namespace MVC5Course.Models
 {
-	//Linhui 用來管理資料庫的CRUD
 	public interface IUnitOfWork
 	{
 		DbContext Context { get; set; }

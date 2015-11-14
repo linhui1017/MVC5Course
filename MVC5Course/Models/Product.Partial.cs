@@ -15,7 +15,7 @@ namespace MVC5Course.Models
         public int ProductId { get; set; }
         
         [StringLength(128, ErrorMessage="欄位長度不得大於 128 個字元")]
-        [限制欄位值必須出現兩的1Attribute]
+       // [限制欄位值必須出現兩的1Attribute]
         public string ProductName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<bool> Active { get; set; }

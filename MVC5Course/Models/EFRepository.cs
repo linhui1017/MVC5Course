@@ -8,6 +8,15 @@ namespace MVC5Course.Models
 	public class EFRepository<T> : IRepository<T> where T : class
 	{
 		public IUnitOfWork UnitOfWork { get; set; }
+
+		public FabricsEntities1 DBContex
+		{
+			get
+			{
+				return ((FabricsEntities1)this.UnitOfWork.Context);
+			}
+			set { return; }
+		}
 		
 		private IDbSet<T> _objectset;
 		private IDbSet<T> ObjectSet
@@ -37,7 +46,7 @@ namespace MVC5Course.Models
 			ObjectSet.Add(entity);
 		}
 
-		public void Delete(T entity)
+		public virtual void Delete(T entity)
 		{
 			ObjectSet.Remove(entity);
 		}

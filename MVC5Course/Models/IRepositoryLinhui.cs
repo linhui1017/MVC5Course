@@ -13,13 +13,10 @@ using System.Text;
 
 namespace MVC5Course.Models
 { 
-	
 	public interface IRepository<T> 
 	{
 		IUnitOfWork UnitOfWork { get; set; }
-		//Linhui 取得所有資料
 		IQueryable<T> All();
-		//Linhui 傳入REGEPX
 		IQueryable<T> Where(Expression<Func<T, bool>> expression);
 		void Add(T entity);
 		void Delete(T entity);

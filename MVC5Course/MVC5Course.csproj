@@ -179,8 +179,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ARController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,7 +197,7 @@
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ClientRepository.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EFGeneratePartialClass.cs">
       <AutoGen>True</AutoGen>
@@ -202,10 +205,10 @@
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EFRepository.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EFUnitOfWork.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fabrics.Context.cs">
       <AutoGen>True</AutoGen>
@@ -223,13 +226,13 @@
       <DependentUpon>Fabrics.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IRepository.cs">
+    <Compile Include="Models\IRepositoryLinhui.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IUnitOfWork.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyClass.cs" />
@@ -241,7 +244,7 @@
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OccupationRepository.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
@@ -256,10 +259,10 @@
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderLineRepository.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderRepository.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
@@ -268,13 +271,13 @@
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductRepository.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RepositoryHelper.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RepositoryIQueryableExtensions.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
+      <DependentUpon>IRepositoryLinhui.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\限制欄位值必須出現兩的1Attribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +292,7 @@
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Test.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -307,9 +311,9 @@
       <DependentUpon>Fabrics.edmx</DependentUpon>
       <LastGenOutput>Fabrics.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\IRepository.tt">
+    <Content Include="Models\IRepositoryLinhui.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IRepository.cs</LastGenOutput>
+      <LastGenOutput>IRepositoryLinhui.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -320,6 +324,7 @@
     <Content Include="Models\Fabrics.edmx.diagram">
       <DependentUpon>Fabrics.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\Test.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -375,6 +380,11 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\NewProduct.cshtml" />
+    <Content Include="Views\Shared\Debug.cshtml" />
+    <Content Include="Views\AR\Index.cshtml" />
+    <Content Include="Views\AR\JsonIndex.cshtml" />
+    <Content Include="Views\MB\Index.cshtml" />
+    <Content Include="Views\MB\FormBinding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -388,6 +398,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

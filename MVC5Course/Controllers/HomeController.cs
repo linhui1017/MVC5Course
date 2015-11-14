@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -25,18 +25,22 @@ namespace MVC5Course.Controllers
         }
 
 
-        public ActionResult Test()
-        {
-            ViewBag.Message = "軟體測試";
-
-            return View();
-        }
+		//public ActionResult Test()
+		//{
+		//	ViewBag.Message = "軟體測試";
+		//	return View();
+		//}
+		public ActionResult Test(string id)
+		{
+			ViewBag.Message = "軟體測試" + id;
+			return View();
+		}
   
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+			
             return View();
         }
     }

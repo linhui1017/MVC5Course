@@ -12,9 +12,9 @@ using Omu.ValueInjecter;
 
 namespace MVC5Course.Controllers
 {
-    public class ProductsController : Controller
+	public class ProductsController : BaseController
     {
-        private FabricsEntities1 db = new FabricsEntities1();
+       // private FabricsEntities1 db = new FabricsEntities1();
 
 		ProductRepository repo = RepositoryHelper.GetProductRepository();
 
@@ -50,7 +50,7 @@ namespace MVC5Course.Controllers
 			//			orderby p.ProductId
 			//			select p;
 
-			var data2 = repo.Get取得前面十筆資料();
+			var data2 = repo.Get取得前面10筆範例資料();
 
             //return View(db.Product.ToList());
             return View(data2);
@@ -119,8 +119,10 @@ namespace MVC5Course.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Product.Add(product);
-                db.SaveChanges();
+				//db.Product.Add(product);
+				//db.SaveChanges();
+				repo.Add(product);
+				repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -132,7 +134,7 @@ namespace MVC5Course.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
             }
             //Product product = db.Product.Find(id);
 			Product product = repo.GetByID(id);
@@ -154,8 +156,14 @@ namespace MVC5Course.Controllers
         {
             if (ModelState.IsValid)//資料驗證
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+				//(FabricsEntities1)repo.UnitOfWork().Context();
+				
+				//db.Entry(product).State = EntityState.Modified;
+				//db.SaveChanges();
+
+				//((FabricsEntities1)repo.UnitOfWork.Context).Entry(product).State = EntityState.Modified;
+				repo.DBContex.Entry(product).State = EntityState.Modified;
+				repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");//重新導向到 Index
             }
             return View(product);
@@ -190,9 +198,16 @@ namespace MVC5Course.Controllers
             //    db.OrderLine.Remove(one);
             //}
 
-            db.OrderLine.RemoveRange(product.OrderLine);            
-            db.Product.Remove(product);
-            db.SaveChanges();
+
+			//db.OrderLine.RemoveRange(product.OrderLine);            
+			//db.Product.Remove(product);
+			//db.SaveChanges();
+			
+			//TODO
+			repo.Delete(product);
+
+			repo.UnitOfWork.Commit();
+
             return RedirectToAction("Index");
         }
 
@@ -200,7 +215,8 @@ namespace MVC5Course.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
+				repo.UnitOfWork.Context.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -223,11 +239,14 @@ namespace MVC5Course.Controllers
                 pd.Price = product.Price;
                 pd.Active = true;
                 pd.Stock = 0;
-                db.Product.Add(pd);
+				//db.Product.Add(pd);
+
+				repo.Add(pd);
                 //Linhui 取得所有SaveChanges Error
                 try
                 {
-                    db.SaveChanges();
+                   // db.SaveChanges();
+					repo.UnitOfWork.Commit();
                     //Linhui 當Save Change後 Product 物件自動會取得ProductID
                 }
                 catch (DbEntityValidationException ex)//Linhui 不能只使用Exception
@@ -262,13 +281,23 @@ namespace MVC5Course.Controllers
 
            // var datas = db.Product.Where(x => x.ProductId <= 10);
 
-			var datas = repo.Get取得前面十筆資料();
+			var datas = repo.Get取得前面10筆範例資料();
 
             foreach (var one in datas) 
             {
-                one.Price =7;
+                one.Price =8;
             }
-            db.SaveChanges();// Linhui SaveChanges Transaction Commit
+           
+			try
+			{
+				//db.SaveChanges();// Linhui SaveChanges Transaction Commit
+				repo.UnitOfWork.Commit();
+			}
+			catch (Exception)
+			{
+				
+				throw;
+			}
 
             return RedirectToAction("Index");
         }

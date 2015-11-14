@@ -1,0 +1,67 @@
+﻿@model MVC5Course.Models.NewProductVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    @ViewData["MyName"]
+    <hr/>
+    @ViewBag.MyApp
+    <hr />
+    @TempData["Msg"]
+    <hr />
+    
+    <table class="table">
+        <tr>
+            <td>ProductID</td>
+            <td>ProductName</td>
+            <td>Price</td>
+        </tr>
+        @foreach (MVC5Course.Models.Product item in ViewBag.Products)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+
+    </table>
+
+
+</div>
+<div>
+    <h4>NewProductVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    }
+</div>
