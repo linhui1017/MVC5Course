@@ -17,7 +17,7 @@ namespace MVC5Course.Models
 			}
 			set { return; }
 		}
-		
+	
 		private IDbSet<T> _objectset;
 		private IDbSet<T> ObjectSet
 		{

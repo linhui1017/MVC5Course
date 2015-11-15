@@ -172,6 +172,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFiliter\在多個控制器中共用的ViewBag屬性Attribuite.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -385,6 +386,12 @@
     <Content Include="Views\AR\JsonIndex.cshtml" />
     <Content Include="Views\MB\Index.cshtml" />
     <Content Include="Views\MB\FormBinding.cshtml" />
+    <Content Include="Views\MB\MutiBinding.cshtml" />
+    <Content Include="Views\Shared\Error_DbEntityValidationException.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\ViewTest.cshtml" />
+    <Content Include="Views\Home\_Layout.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

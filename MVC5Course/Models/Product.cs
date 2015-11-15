@@ -12,6 +12,7 @@ namespace MVC5Course.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+	using System.Web.Mvc;
     
     public partial class Product
     {
@@ -24,12 +25,13 @@ namespace MVC5Course.Models
     
         public int ProductId { get; set; }
         [Required]
-        [StringLength(100)]
-        public string ProductName { get; set; }
+        //[StringLength(100)]
+		//[AllowHtml] //Linhui 強行別驗證才有用
+		public string ProductName { get; set; }
         [Required]
         [Range(1.0,999999)]
         public Nullable<decimal> Price { get; set; }
-        [Required]
+        //[Required]
         public Nullable<bool> Active { get; set; }
         public Nullable<decimal> Stock { get; set; }
         public string Memo { get; set; }

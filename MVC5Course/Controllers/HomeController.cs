@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC5Course.ActionFiliter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
+	[在多個控制器中共用的ViewBag屬性Attribuite]
 	public class HomeController : BaseController
     {
         public ActionResult Index()
@@ -30,9 +32,12 @@ namespace MVC5Course.Controllers
 		//	ViewBag.Message = "軟體測試";
 		//	return View();
 		//}
+		//[在多個控制器中共用的ViewBag屬性Attribuite]
 		public ActionResult Test(string id)
 		{
-			ViewBag.Message = "軟體測試" + id;
+			//throw new Exception("BAD");
+			
+			//ViewBag.Message = "軟體測試" + id;
 			return View();
 		}
   
@@ -43,5 +48,15 @@ namespace MVC5Course.Controllers
 			
             return View();
         }
+
+		public ActionResult ViewTest(bool enable = true)
+		{
+			ViewBag.IsEnable = enable;
+
+			int[] result =new int[5]{1,2,3,4,5};
+
+
+			return PartialView(result);
+		}
     }
 }

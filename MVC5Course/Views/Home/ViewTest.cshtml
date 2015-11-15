@@ -1,0 +1,53 @@
+﻿@model int[]
+@{
+    Layout = null;
+    @*var i = 0;
+    @:數值: @i*@
+
+}
+
+@foreach (var i in @Model)
+{
+   @i 
+}
+<hr />
+
+@foreach (var i in @Model)
+{
+    @(i.ToString() + "\u0020\u0020")
+}
+
+@foreach (var i in @Model)
+{
+    @(i.ToString() + " ")
+}
+
+@foreach (var i in @Model)
+{<text>@i </text>}
+<hr />
+
+
+<hr />
+<ul>
+    @foreach (var i in @Model)
+    {
+        <li>@i </li>
+    }
+</ul>
+
+
+    @*<hr />
+        @DateTime.Now
+        <hr />
+        @(i++)
+        <hr />
+        @(i++)
+        <hr />
+        @if (ViewBag.IsEnable)
+        {
+            <text>啟用</text>
+        }
+        else
+        {
+            <p>停用</p>
+        }*@

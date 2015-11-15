@@ -38,11 +38,38 @@ namespace MVC5Course.Controllers
 			return View();
 		}
 
+		//[HttpPost]
+		//public ActionResult FormBinding(double Price, FormCollection form)
+		//{
+		//	//form["Price"]
+		//	return View();
+		//}
+
+
 		[HttpPost]
-		public ActionResult FormBinding(double Price, FormCollection form)
+		public ActionResult FormBinding(Product data)
 		{
-			//form["Price"]
+
+			return Json(data);
+		}
+
+		public ActionResult MutiBinding()
+		{
 			return View();
 		}
+
+		[HttpPost]
+		public ActionResult MutiBinding(Product data1,
+			[Bind(Prefix = "data2", Exclude = "Active")]
+			Product data2)
+		{
+			//Linhui JsonResult 預設只能使用 HttpPost，如欲使用HttpGet 須加上 JsonRequestBehavior.AllowGet宣告
+			//return Json(data1, JsonRequestBehavior.AllowGet);
+			ViewBag.data1 = data1;
+			ViewBag.data2 = data2;
+			//return View();
+			return Json(data2);
+		}
+
     }
 }
