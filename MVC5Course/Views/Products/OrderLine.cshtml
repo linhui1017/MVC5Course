@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MVC5Course.Models.OrderLine>
+
+<h2>OrderLine Details</h2>
+<table class="table">
+    <tr>
+        <th>Qty</th>
+        <th>Number.</th>
+        <th>Id</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Qty</td>
+            <td>@item.LineNumber</td>
+            <td>@item.OrderId</td>
+        </tr>
+    }
+
+</table>

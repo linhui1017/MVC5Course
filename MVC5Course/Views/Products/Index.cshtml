@@ -1,5 +1,6 @@
-﻿@model IEnumerable<MVC5Course.Models.Product>
-
+﻿@*@model IEnumerable<MVC5Course.Models.Product>*@
+@*@using MVC5Course.Models>*@
+@model IEnumerable<Product>
 @{
     ViewBag.Title = "Index";
 }
@@ -7,9 +8,14 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("", "Create", null, new { @class="logo"});*@
+    <a class="logo" href="@Url.Action("Create")">Test</a>
+    @Html.ActionLink("Home", "Create", "Home",null, new { @class = "btn", data_test = "123" })
+    @Html.ActionLink("Create New", "Create", null, new {@class="btn", data_test="123" })
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm(ViewContext.RouteData.Values["action"].ToString(),
+ViewContext.RouteData.Values["controller"].ToString(), FormMethod.Post
+    ))
 {
     <p class="text-left">
         <input type="search" name="searchStr" value="" accesskey="s" placeholder="請輸入關鍵字" />

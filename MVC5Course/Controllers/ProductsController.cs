@@ -435,5 +435,11 @@ namespace MVC5Course.Controllers
 
 			return RedirectToAction("Index");
 		}
+		[ChildActionOnly]
+		public ActionResult OrderLine(int id)
+		{
+			var product = repo.GetByID(id);
+			return View(product.OrderLine);
+		}
 	}
 }

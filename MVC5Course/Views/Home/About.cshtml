@@ -1,13 +1,27 @@
 ﻿@{
     ViewBag.Title = "About";
+    
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 <h3>@ViewBag.QueryString</h3>
 
-<p>Use this area to provide additional information.</p>
+@Utility.CommonBlack()
+<br>
+@Utility.CommonBlack().ToHtmlString()
+
+<br>
+@Html.Raw(Utility.CommonBlack().ToHtmlString())
+
+<br>
+@Utility.GatDate()
 
 @section footer
 {
 <p>&copy; @DateTime.Now.Year - Linhui's ASP.NET 應用程式</p>
 }
+
+@*@helper CommonBlack()
+    {
+        <p>Use this area to provide additional information.</p>
+    }*@

@@ -43,6 +43,10 @@
         </dd>
 
     </dl>
+
+    <hr />
+    @*@Html.Action("OrderLine", new { id=Model.ProductId })*@
+    @Html.Partial("OrderLine", Model.OrderLine)
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |

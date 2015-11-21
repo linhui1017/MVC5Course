@@ -1,0 +1,13 @@
+﻿@helper CommonBlack() 
+{
+    <p>Use this area to provide additional information.</p>
+}
+
+@functions 
+{
+    public static IHtmlString GatDate() 
+    {
+        return new HtmlString(DateTime.Now.ToString());
+    }
+
+}
